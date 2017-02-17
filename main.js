@@ -1,4 +1,8 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow} = require('electron');
+const path = require('path');
+const url = require('url');
+
+require('dotenv').config();
 
 let win = null;
 
@@ -7,7 +11,16 @@ app.on('ready', function() {
   win = new BrowserWindow({width: 1000, height: 600});
 
   // specify entry point
-  win.loadURL('http://localhost:4000');
+  if (process.env.PACKAGE === 'true'){
+    win.loadURL(url.format({
+      pathname: path.join(__dirname, 'dist/index.html'),
+      protocol: 'file:',
+      slashes: true
+    }));
+  } else {
+    win.loadURL(process.env.HOST);
+    win.webContents.openDevTools();
+  }
 
   // show dev tools
   // NOTE: remove this line before distribution
