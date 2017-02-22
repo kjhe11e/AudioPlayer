@@ -1,0 +1,52 @@
+/*
+./src/app/music/music-player/music-player.component.css
+*/
+
+.player {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.player div {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.player .player_backward button, .player .player_forward button {
+  background: transparent;
+  border: 1px solid rgb(21,96,150);
+  color: rgb(28,107,162);
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  font-size: 35px;
+  outline: none;
+}
+
+.player .player_backward button {
+  border-left: none;
+}
+
+.player .player_forward button {
+  border-right: none;
+}
+
+.player .player_main button:hover, .player .player_backward button:hover, .player .player_forward button:hover {
+  color: rgba(28,107,162,0.7);
+  border: 1px solid rgba(21,97,150,0.7);
+}
+
+.player .player_main {
+  border: 1px solid rgb(21,97,150);
+}
+
+.player .player_main button {
+  color: rgb(21,97,150);
+  background: transparent;
+  width: 75px;
+  height: 75px;
+  border: none;
+  font-size: 35px;
+  outline: none;
+}

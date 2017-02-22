@@ -1,0 +1,16 @@
+<!-- ./src/app/music/music-player/music-player.component.html -->
+
+<div class="player">
+  <div class="player_backward">
+    <button (click)="back.emit()"><i class="fa fa-backward"></i></button>
+  </div>
+  <div class="player_main">
+    <button *ngIf="paused" (click)="pause.emit()"><i class="fa fa-pause"></i></button>
+    <button *ngIf="!paused" (click)="pause.emit()"><i class="fa fa-play"></i></button>
+    <button (click)="stop.emit()"><i class="fa fa-stop"></i></button>
+    <button (click)="random.emit()"><i class="fa fa-random"></i></button>
+  </div>
+  <div class="player_forward">
+    <button (click)="forward.emit()"><i class="fa fa-forward"></i></button>
+  </div>
+</div>
