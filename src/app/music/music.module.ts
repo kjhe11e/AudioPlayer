@@ -9,7 +9,9 @@ import { AutoCompleteModule } from 'primeng/primeng';
 
 // custom imports
 import { MusicSearchComponent } from './music-search/music-search.component';
-
+import { MusicPlayerComponent } from './music-player/music-player.component';
+import { MusicDetailsComponent } from './music-details/music-details.component';
+import { ApiService } from './shared/api.service';
 
 @NgModule ({
   imports: [
@@ -22,12 +24,16 @@ import { MusicSearchComponent } from './music-search/music-search.component';
 
   exports: [
     // expose components
-    MusicSearchComponent
+    MusicSearchComponent,
+    MusicPlayerComponent,
+    MusicDetailsComponent
   ],
 
   declarations: [
     // declare components
-    MusicSearchComponent
+    MusicSearchComponent,
+    MusicPlayerComponent,
+    MusicDetailsComponent
   ],
 
   providers: [
