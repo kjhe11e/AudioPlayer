@@ -1,0 +1,15 @@
+/*
+./src/app/music/music-footer/mustic-footer.component.css
+*/
+
+.footer {
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: #040C12;
+}
+
+.footer p {
+  text-align: center;
+}
