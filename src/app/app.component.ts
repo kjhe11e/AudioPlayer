@@ -50,7 +50,11 @@ export class AppComponent implements OnInit {
   }
 
   handleTimeUpdate(e) {
-    // TODO
+    const elapsed = this.musicService.audio.currentTime;
+    const duration = this.musicService.audio.duration;
+    this.position = elapsed / duration;
+    this.elapsed = this.musicService.formatTime(elapsed);
+    this.duration = this.musicService.formatTime(duration);
   }
 
 }
