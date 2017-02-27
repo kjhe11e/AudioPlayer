@@ -10,8 +10,9 @@ import { MusicService } from './music/shared/music.service';
 })
 
 export class AppComponent implements OnInit {
-
+  title;
   tracks: any[] = [];
+  backgroundStyle;
 
   constructor(
     private musicService: MusicService
@@ -24,10 +25,32 @@ export class AppComponent implements OnInit {
     });
 
     // on song end
-    this.musicService.audio.onended = this.handleEnded.bind(this);
+    this.musicService.audio.onEnded = this.handleEnded.bind(this);
 
     // on play time update
-    this.musicService.audio.ontimeupdate = this.handleTimeUpdate.bind(this);
+    this.musicService.audio.onTimeUpdate = this.handleTimeUpdate.bind(this);
+  }
+
+  handleRandom() {
+    // pick random song
+    const randomTrack = this.musicService.randomTrack(this.tracks);
+
+    // play the picked song
+    this.musicService.play(randomTrack.stream_url);
+
+    // set title property
+    this.title = randomTrack.title;
+
+    // create background based on selected song
+    //this.backgroundStyle = this.composeBackgroundStyle(randomTrack.artwork_url);
+  }
+
+  handleEnded(e) {
+    this.handleRandom();
+  }
+
+  handleTimeUpdate(e) {
+    // TODO
   }
 
 }
