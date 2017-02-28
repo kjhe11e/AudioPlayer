@@ -53,7 +53,7 @@ export class MusicService {
   }
 
   findTracks(value) {
-    return this.apiService.get('${this.apiService.prepareUrl('https://api.soundcloud.com/tracks')}&q=${value}', false)
+    return this.apiService.get(`${this.apiService.prepareUrl('https://api.soundcloud.com/tracks')}&q=${value}`, false)
       .debounceTime(300)
       .distinctUntilChanged()
       .map(res => res.json())
