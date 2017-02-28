@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   duration;
   tracks: any[] = [];
   backgroundStyle;
+  filteredTracks: any[] = [];
 
   constructor(
     private musicService: MusicService
@@ -58,6 +59,12 @@ export class AppComponent implements OnInit {
     this.position = elapsed / duration;
     this.elapsed = this.musicService.formatTime(elapsed);
     this.duration = this.musicService.formatTime(duration);
+  }
+
+  handleQuery(payload) {
+    this.musicService.findTracks(payload).subscribe(tracks => {
+      this.filteredTracks = tracks;
+    });
   }
 
   composeBackgroundStyle(url) {
