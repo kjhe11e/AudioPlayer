@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   position;
   elapsed;
   duration;
+  paused = true;
   tracks: any[] = [];
   backgroundStyle;
   filteredTracks: any[] = [];
@@ -76,6 +77,39 @@ export class AppComponent implements OnInit {
         rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.7)),
         url(${this.musicService.xlArtwork(url)})`
+    }
+  }
+
+  handlePausePlay() {
+    if(this.musicService.audio.paused) {
+      this.paused = true;
+      this.musicService.audio.play();
+    }
+    else {
+      this.paused = false;
+      this.musicService.audio.pause();
+    }
+  }
+
+  handleStop() {
+    this.musicService.audio.pause();
+    this.musicService.audio.currentTime = 0;
+    this.paused = false;
+  }
+
+  handleBackward() {
+    let elapsed = this.musicService.audio.currentTime;
+    console.log(elapsed);
+    if(elapsed >= 5) {
+      this.musicService.audio.currentTime = elapsed - 5;
+    }
+  }
+
+  handleForward() {
+    let elapsed = this.musicService.audio.currentTime;
+    const duration = this.musicService.audio.duration;
+    if(duration - elapsed >= 5) {
+      this.musicService.audio.currentTime = elapsed + 5;
     }
   }
 
