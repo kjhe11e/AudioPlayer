@@ -14,6 +14,7 @@ import { MusicDetailsComponent } from './music-details/music-details.component';
 import { MusicProgressComponent } from './music-progress/music-progress.component';
 import { MusicFooterComponent } from './music-footer/music-footer.component';
 import { ApiService } from './shared/api.service';
+import { MusicService } from './shared/music.service';
 
 @NgModule ({
   imports: [
