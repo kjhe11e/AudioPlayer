@@ -1,7 +1,31 @@
 <!-- ./src/app/app.component.html -->
-<h1>
-  {{title}}
-</h1>
 
 <div [ngStyle]="backgroundStyle">
+  <music-search
+    (query)="handleQuery($event)"
+    (update)="handleUpdate($event)"
+    [tracks]="filteredTracks"
+  ></music-search>
+
+  <music-details
+    [title]="title"
+  ></music-details>
+
+  <music-player
+    (random)="handleRandom($event)"
+    (backward)="handleBackward()"
+    (forward)="handleForward()"
+    (pausePlay)="handlePausePlay()"
+    (stop)="handleStop()"
+    [paused]="paused"
+  ></music-player>
+
+  <music-progress
+    [current]="position"
+    [elapsed]="elapsed"
+    [total]="duration"
+  ></music-progress>
+
+  <music-footer></music-footer>
+
 </div>
