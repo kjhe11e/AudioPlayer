@@ -11,6 +11,9 @@ import { MusicService } from './music/shared/music.service';
 
 export class AppComponent implements OnInit {
   title;
+  position;
+  elapsed;
+  duration;
   tracks: any[] = [];
   backgroundStyle;
 
@@ -21,7 +24,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.musicService.getPlaylistTracks().subscribe(tracks => {
       this.tracks = tracks;
-      //this.handleRandom();  // TODO: this function not yet created
+      this.handleRandom();
     });
 
     // on song end
@@ -42,7 +45,7 @@ export class AppComponent implements OnInit {
     this.title = randomTrack.title;
 
     // create background based on selected song
-    //this.backgroundStyle = this.composeBackgroundStyle(randomTrack.artwork_url);
+    this.backgroundStyle = this.composeBackgroundStyle(randomTrack.artwork_url);
   }
 
   handleEnded(e) {
@@ -52,9 +55,21 @@ export class AppComponent implements OnInit {
   handleTimeUpdate(e) {
     const elapsed = this.musicService.audio.currentTime;
     const duration = this.musicService.audio.duration;
-    //this.position = elapsed / duration;
-    //this.elapsed = this.musicService.formatTime(elapsed);
-    //this.duration = this.musicService.formatTime(duration);
+    this.position = elapsed / duration;
+    this.elapsed = this.musicService.formatTime(elapsed);
+    this.duration = this.musicService.formatTime(duration);
+  }
+
+  composeBackgroundStyle(url) {
+    return {
+      width: '100%',
+      height: '600px',
+      backgroundSize:'cover',
+      backgroundImage: `linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)),
+        url(${this.musicService.xlArtwork(url)})`
+    }
   }
 
 }
